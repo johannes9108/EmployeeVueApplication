@@ -17,7 +17,11 @@ new Vue({
     },
     addEmployee(newEmployee) {
       newEmployee.id = this.idCounter++;
-      this.employees.push(JSON.stringify(newEmployee));
+      this.employees.push(newEmployee);
+    },
+    removeEmployee(id) {
+      console.log(id);
+      this.employees = this.employees.filter((employee) => employee.id !== id);
     },
   },
 

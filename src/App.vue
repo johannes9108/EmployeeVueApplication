@@ -44,6 +44,14 @@ img {
     padding: 0;
     margin: 0;
   }
+  a {
+    color: black;
+
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+  }
 
   // background-color: rgb(93, 93, 93);
 }

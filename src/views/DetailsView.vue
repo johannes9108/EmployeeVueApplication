@@ -6,6 +6,9 @@
         v-for="employee in this.$root.employees"
         v-bind:key="employee.id"
       />
+      <router-link :to="{name: 'Create'}">
+        <button>Create</button>
+      </router-link>
     </div>
     <Details
       v-bind:key="this.$route.params.id"
@@ -30,6 +33,13 @@ export default {
 .detailsView {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  & > div {
+    background-color: gainsboro;
+    * {
+      background-color: inherit;
+    }
+  }
 }
 </style>
 

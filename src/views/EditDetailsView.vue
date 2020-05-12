@@ -6,6 +6,9 @@
         v-for="employee in this.$root.employees"
         v-bind:key="employee.id"
       />
+      <router-link :to="{name: 'Create'}">
+        <button>Create</button>
+      </router-link>
     </div>
     <Details
       editMode
@@ -35,5 +38,12 @@ export default {
 .editDetailsView {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  & > div {
+    background-color: gainsboro;
+    * {
+      background-color: inherit;
+    }
+  }
 }
 </style>

@@ -1,25 +1,35 @@
 <template>
-  <div class="employee" v-bind:class="{highlight: this.checkSelected}">
+  <div v-if="employee" class="employee" v-bind:class="{highlight: this.checkSelected}">
     <ul>
       <li>
+        <Popup v-if="showPopup" @close="showPopup = false" :id="employee.id" />
         <router-link :to="{name: 'Details', params:{id: employee.id}}">
           <img src="../assets/placeholderPerson.png" />
           {{employee.name}}
         </router-link>
+        <button @click="removeEmployee()">Delete</button>
       </li>
     </ul>
   </div>
 </template>
 
-
 <script>
 // @ is an alias to /src
-
+import Popup from "./Popup";
 export default {
+  components: {
+    Popup
+  },
   data() {
     return {
-      selected: false
+      selected: false,
+      showPopup: false
     };
+  },
+  methods: {
+    removeEmployee() {
+      this.showPopup = true;
+    }
   },
   computed: {
     checkSelected() {
@@ -39,6 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .employee {
+  position: relative;
   background-color: gainsboro;
 }
 .highlight {

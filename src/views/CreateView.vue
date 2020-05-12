@@ -10,29 +10,33 @@
     <input type="text" v-model="email" />
 
     <button @click="createEmployee">Create employee</button>
+
+    <router-link :to="{name: 'Staff'}">
+      <button>Back to employees</button>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  date() {
+  data() {
     return {
-      name: "Testing",
-      title: "Testing",
-      mobile: "Testing",
-      email: "Testing"
+      name: "",
+      title: "",
+      mobile: "",
+      email: ""
     };
   },
   methods: {
-    // createEmployee() {
-    //   let newEmployee = {
-    //     name: this.name,
-    //     title: this.title,
-    //     mobile: this.mobile,
-    //     email: this.email
-    //   };
-    //   this.$root.addEmployee(newEmployee);
-    // }
+    createEmployee() {
+      let newEmployee = {
+        name: this.name,
+        title: this.title,
+        mobile: this.mobile,
+        email: this.email
+      };
+      this.$root.addEmployee(newEmployee);
+    }
   }
 };
 </script>
