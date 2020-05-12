@@ -1,20 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="headers">
+      <div>
+        <h1>Employees</h1>
+      </div>
+      <div>
+        <h1>Details</h1>
+      </div>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+img {
+  border-radius: 100%;
+  max-width: 50px;
+}
+.headers {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  div {
+    width: 100%;
+    text-align: center;
+  }
+  div:nth-child(1) {
+    background: gainsboro;
+  }
+}
+
 #app {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 10vh auto;
+  height: 100vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+
   color: #2c3e50;
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  // background-color: rgb(93, 93, 93);
 }
 
 #nav {

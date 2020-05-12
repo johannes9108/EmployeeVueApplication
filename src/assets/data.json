@@ -1,0 +1,25 @@
+{
+  "database": [
+    {
+      "id": "1",
+      "name": "Kalle Svensson",
+      "title": "sekreterare",
+      "mobile": "00112233",
+      "email": "kalle.svensson@sinussurf.se"
+    },
+    {
+      "id": "2",
+      "name": "Ali Abduzeedo",
+      "title": "sekreterare",
+      "mobile": "0033333",
+      "email": "ali.abduzeedo@sinussurf.se"
+    },
+    {
+      "id": "3",
+      "name": "Minette Smith",
+      "title": "sekreterare",
+      "mobile": "442211",
+      "email": "minette.smith@sinussurf.se"
+    }
+  ]
+}
