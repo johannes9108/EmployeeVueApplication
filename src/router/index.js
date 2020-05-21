@@ -2,35 +2,49 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import EmployeesView from "../views/EmployeesView.vue";
 import DetailsView from "../views/DetailsView.vue";
-import EditDetailsView from "../views/EditDetailsView.vue";
 import CreateView from "../views/CreateView.vue";
+import FormView from "../views/FormView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    redirect: "/staff",
+    redirect: "/login",
   },
+  {
+    path: "/login",
+    name: "Login",
+    component: FormView,
+  },
+
   {
     path: "/staff",
     name: "Staff",
     component: EmployeesView,
-  },
-  {
-    path: "/staff:id",
-    name: "Details",
-    component: DetailsView,
-  },
-  {
-    path: "/staff:id/edit",
-    name: "Edit",
-    component: EditDetailsView,
-  },
-  {
-    path: "/staff/create",
-    name: "Create",
-    component: CreateView,
+    children: [
+      {
+        path: ":id",
+        name: "Details",
+        component: DetailsView,
+        props: {
+          editMode: false,
+        },
+      },
+      {
+        path: ":id/edit",
+        name: "Edit",
+        component: DetailsView,
+        props: {
+          editMode: true,
+        },
+      },
+      {
+        path: "create",
+        name: "Create",
+        component: CreateView,
+      },
+    ],
   },
   // {
   //   // path: '/about',

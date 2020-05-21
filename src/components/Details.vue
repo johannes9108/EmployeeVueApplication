@@ -1,5 +1,5 @@
 <template>
-  <div class="detailsContainer" editMode>
+  <div class="detailsContainer">
     <div v-if="!editMode" class="details">
       <img src="../assets/placeholderPerson.png" class="thumbnail" />
       <h2>{{data.name}}</h2>

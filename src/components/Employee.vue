@@ -1,14 +1,22 @@
 <template>
-  <div v-if="employee" class="employee" v-bind:class="{highlight: this.checkSelected}">
+  <div v-if="employee" class="employee">
+    <Popup v-if="showPopup" @close="showPopup = false" :id="employee.id" />
     <ul>
-      <li>
-        <Popup v-if="showPopup" @close="showPopup = false" :id="employee.id" />
-        <router-link :to="{name: 'Details', params:{id: employee.id}}">
-          <img src="../assets/placeholderPerson.png" />
-          {{employee.name}}
-        </router-link>
-        <button @click="removeEmployee()">Delete</button>
-      </li>
+      <router-link :to="{name: 'Details', params:{id: employee.id}}">
+        <li>
+          <div>
+            <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
+            </svg>
+            {{employee.name}}
+          </div>
+          <button @click.once="removeEmployee()">
+            <img src="../assets/cross.svg" alt="delete" />
+          </button>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -22,21 +30,25 @@ export default {
   },
   data() {
     return {
-      selected: false,
+      isSelected: false,
       showPopup: false
     };
   },
   methods: {
     removeEmployee() {
       this.showPopup = true;
+    },
+    selected() {
+      this.isSelected = true;
+      // this.$emit("highLightEvent", this.employee.id);
     }
   },
   computed: {
-    checkSelected() {
-      if (this.employee.id === this.$route.params.id) {
-        return true;
+    styleObject() {
+      if (this.employee.id === this.$route.params.id && this.selected == true) {
+        return { highlight: true };
       } else {
-        return false;
+        return { highlight: false };
       }
     }
   },
@@ -49,11 +61,9 @@ export default {
 
 <style lang="scss" scoped>
 .employee {
-  position: relative;
-  background-color: gainsboro;
 }
 .highlight {
-  background-color: rgb(171, 171, 171);
+  background-color: rgb(159, 53, 53);
 }
 a {
   text-decoration: none;
@@ -65,6 +75,20 @@ ul {
   li {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    * {
+      background-color: transparent;
+      border: none;
+    }
+    button {
+      align-self: flex-end;
+      img {
+        max-height: 1rem;
+      }
+      svg {
+      }
+    }
   }
 }
 </style>

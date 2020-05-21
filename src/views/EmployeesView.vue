@@ -10,6 +10,7 @@
         <button>Create</button>
       </router-link>
     </div>
+    <router-view />
   </div>
 </template>
 
@@ -21,6 +22,22 @@ export default {
   name: "Staff",
   components: {
     Employee
+  },
+  created() {
+    let item = sessionStorage.getItem("credentials");
+    if (item != null) {
+      let credentials = JSON.parse(item);
+      if (credentials.username == "admin" && credentials.password == "password")
+        console.log("Welcome");
+      else {
+        console.log("Fel credentials");
+        this.$router.push("/login");
+      }
+    } else {
+      // Go back to Login
+      console.log("Inga credentials finns");
+      this.$router.push("/login");
+    }
   }
 };
 </script>
@@ -29,11 +46,9 @@ export default {
 .employeesView {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  & > div {
+  border-top: solid black 1px;
+  & > div:nth-of-type(1) {
     background-color: gainsboro;
-    * {
-      background-color: inherit;
-    }
   }
 }
 </style>

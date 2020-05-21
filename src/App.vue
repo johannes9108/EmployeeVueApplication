@@ -9,8 +9,18 @@
       </div>
     </div>
     <router-view />
+    <cookie-consent />
   </div>
 </template>
+<script>
+import CookieConsent from "./components/CookieConsent";
+
+export default {
+  components: {
+    "cookie-consent": CookieConsent
+  }
+};
+</script>
 
 <style lang="scss">
 img {
@@ -21,6 +31,7 @@ img {
   height: 100%;
   display: flex;
   justify-content: space-around;
+
   div {
     width: 100%;
     text-align: center;
